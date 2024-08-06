@@ -5,7 +5,7 @@ exports.createProduct = async (req, res) => {
   try {
     const product = new Product({ name, description, price, category });
     await product.save();
-    res.status(201).send(product);
+    res.status(201).send("Product created successfully");
   } catch (error) {
     res.status(400).send(error);
   }
@@ -44,7 +44,7 @@ exports.deleteProductById = async (req, res) => {
   try {
     const product = await Product.findOneAndDelete({ productId: id });
     if (!product) return res.status(404).send('Product not found');
-    res.send(product);
+    res.send({msg: 'Product deleted successfully'});
   } catch (error) {
     res.status(400).send(error);
   }
